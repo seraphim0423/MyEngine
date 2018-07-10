@@ -35,6 +35,15 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,
 
 LRESULT CALLBACK WindowProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam) {
     switch(message) {
+        case WM_PAINT:{
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hWnd,&ps);
+            RECT rec = {20,20,60,80};
+            HBRUSH brush = (HBRUSH) GetStockObject(BLACK_BRUSH);
+
+            FillRect(hdc,&rec,brush);
+        }
+        break;
         case WM_DESTROY:{
             PostQuitMessage(0);
             return 0;
